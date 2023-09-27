@@ -1,0 +1,15 @@
+<h1>Check Out a Book</h1>
+
+<%= form_for @book_issue do |f| %>
+  <div class="field">
+    <%= f.label :patron_name %>
+    <%= f.text_field :patron_name %>
+  </div>
+  <div class="field">
+    <%= f.label :book_id %>
+    <%= f.collection_select(:book_id, Book.all, :id, :title) %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Check Out' %>
+  </div>
+<% end %>

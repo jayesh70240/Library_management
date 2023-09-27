@@ -1,0 +1,15 @@
+<h1>Add New Material</h1>
+
+<%= form_for @material do |f| %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :author %>
+    <%= f.text_field :author %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'Add Material' %>
+  </div>
+<% end %>

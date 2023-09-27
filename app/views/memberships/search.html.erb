@@ -1,0 +1,17 @@
+<!-- app/views/memberships/search.html.erb -->
+
+<h1>Search Results</h1>
+
+<% if @query.blank? %>
+  <p>Please enter a search query.</p>
+<% else %>
+  <% if @results.empty? %>
+    <p>No results found for '<%= @query %>'.</p>
+  <% else %>
+    <ul>
+      <% @results.each do |membership| %>
+        <li><%= link_to membership.name, membership %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>

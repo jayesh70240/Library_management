@@ -1,0 +1,18 @@
+<h1>Library Catalog</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.title %></td>
+        <td><%= material.author %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

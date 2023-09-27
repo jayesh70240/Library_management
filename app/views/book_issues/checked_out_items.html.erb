@@ -1,0 +1,23 @@
+<h1>Your Checked-Out Items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Due Date</th>
+      <th>Renew</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @checked_out_items.each do |book_issue| %>
+    <tr>
+      <td><%= book_issue.book.title %></td>
+      <td><%= book_issue.due_date %></td>
+      <td>
+        <%= link_to 'Renew', renew_book_issue_path(book_issue), method: :post %>
+        <%= link_to 'Return', return_book_issue_path(book_issue), method: :post %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>

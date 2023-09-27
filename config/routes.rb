@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
+  get 'book_issues/new'
+  devise_for :users
   get 'books_management/index'
   root 'main#index'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :memberships, only: [:new, :create, :show]
+  
+  resources :memberships do
+    member do
+      get 'renew'
+      post 'renewal_process'
+    end
+    collection do
+      get 'search'
+    end
+  end
+
+  
+  resources :materials
 end

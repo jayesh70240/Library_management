@@ -1,0 +1,22 @@
+# <h1>Renew Membership</h1>
+
+# <p>Current Membership Expiration: <%= @membership.expiration_date %></p>
+
+# <%= form_tag renewal_process_membership_path(@membership), method: :post do %>
+#   <label for="renewal_duration">Select Renewal Duration:</label>
+#   <%= select_tag 'renewal_duration', options_for_select([['1 Month', 1], ['3 Months', 3], ['1 Year', 12]]) %>
+#   <br>
+#   <%= submit_tag 'Renew Membership' %>
+# <% end %>
+
+<h1>Renew Membership</h1>
+
+<%= form_with url: renewal_process_membership_path(@membership), method: :post do |form| %>
+  <div class="field">
+    <%= form.label :renewal_duration %>
+    <%= form.select :renewal_duration, options_for_select([['1 Month', 1], ['3 Months', 3], ['1 Year', 12]]) %>
+  </div>
+  <div class="actions">
+    <%= form.submit 'Renew Membership' %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<h1>Create a new Membership</h1>
+
+<%= form_with(model: @membership, local: true) do |f| %>
+    
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    
+    <%= f.label :membership_type %>
+    <%= f.text_field :membership_type %>
+    
+    <%= f.label :expiration_date %>
+    <%= f.text_field :expiration_date %>
+
+    <%= f.submit "Membership" %>
+<% end %>

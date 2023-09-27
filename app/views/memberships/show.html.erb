@@ -1,0 +1,7 @@
+<h1>Membership Details</h1>
+
+<p><strong>Name:</strong> <%= @membership.name %></p>
+<p><strong>Email:</strong> <%= @membership.email %></p>
+<p><strong>Expiration Date:</strong> <%= @membership.expiration_date %></p>
+
+<%= link_to 'Renew Membership', renew_membership_path(@membership) %>
