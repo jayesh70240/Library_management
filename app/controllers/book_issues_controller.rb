@@ -6,11 +6,11 @@ class BookIssuesController < ApplicationController
   def create
     @book_issue = BookIssue.new(book_issue_params)
     if @book_issue.save
-      @book_issue.book.update(checked_out: true)
+      
       flash[:success]= "Book issued Successfully."
     else
-      flash[:erroe]= "Book issued failed, try again."
-      rendwe "new"
+      flash[:error]= "Book issued failed, try again."
+      render "new"
     end
   end
 
@@ -46,14 +46,14 @@ class BookIssuesController < ApplicationController
     @book_issue = BookIssue.new(book_issue_params)
   
     if @book_issue.save
-      # Create a transaction for the issue
+      
       Transaction.create(
         book: @book_issue.book,
         patron_name: @book_issue.patron_name,
         transaction_type: "issue",
         transaction_date: Time.zone.now
       )
-  
+      @book_issue.book.update(checked_out: true)
       flash[:success] = "Item issued successfully."
       redirect_to checked_out_items_book_issues_path
     else

@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'book_issues/new'
+ 
+  resources :books
+
+  resources :book_issues
+  resources :book_issues do
+    get 'checked_out_items', on: :collection
+  end
+
   devise_for :users
     as :user do
       delete "/sign_out", to: "devise/sessions#destroy"
@@ -8,7 +15,6 @@ Rails.application.routes.draw do
   root 'main#index'
 
   resources :memberships, only: [:new, :create, :show]
-  
   resources :memberships do
     member do
       get 'renew'
@@ -21,4 +27,5 @@ Rails.application.routes.draw do
 
   
   resources :materials
+
 end
