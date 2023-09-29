@@ -1,0 +1,27 @@
+<h1>Book List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Checked Out</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% if @books.present? %>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.checked_out ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3">No books found.</td>
+    </tr>
+  <% end %>
+</tbody>
+
+</table>

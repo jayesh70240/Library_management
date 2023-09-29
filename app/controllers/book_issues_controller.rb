@@ -1,4 +1,5 @@
 class BookIssuesController < ApplicationController
+  before_action :authenticate_user!
   def new
     @book_issue = BookIssue.new
   end

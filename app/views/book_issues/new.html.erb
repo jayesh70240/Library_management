@@ -1,6 +1,16 @@
 <h1>Check Out a Book</h1>
 
 <%= form_for @book_issue do |f| %>
+  <% if @book_issue.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @book_issue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="field">
     <%= f.label :patron_name %>
     <%= f.text_field :patron_name %>

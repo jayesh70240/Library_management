@@ -1,5 +1,15 @@
 <h1>Your Checked-Out Items</h1>
 
+<% if @checked_out_items.errors.any? %>
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">
+    <ul>
+      <% @checked_out_items.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <table>
   <thead>
     <tr>
@@ -9,15 +19,15 @@
     </tr>
   </thead>
   <tbody>
-  <% @checked_out_items.each do |book_issue| %>
-    <tr>
-      <td><%= book_issue.book.title %></td>
-      <td><%= book_issue.due_date %></td>
-      <td>
-        <%= link_to 'Renew', renew_book_issue_path(book_issue), method: :post %>
-        <%= link_to 'Return', return_book_issue_path(book_issue), method: :post %>
-      </td>
-    </tr>
-  <% end %>
-</tbody>
+    <% @checked_out_items.each do |book_issue| %>
+      <tr>
+        <td><%= book_issue.book.title %></td>
+        <td><%= book_issue.due_date %></td>
+        <td>
+          <%= link_to 'Renew', renew_book_issue_path(book_issue), method: :post %>
+          <%= link_to 'Return', return_book_issue_path(book_issue), method: :post %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

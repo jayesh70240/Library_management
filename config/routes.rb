@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     end
   end
 
-  
   resources :materials
 
 end

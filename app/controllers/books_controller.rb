@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
   def index
-    @book = Book.all
+    @books = Book.all
   end
   
   def new
@@ -11,8 +12,10 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
     if @book.save
       flash[:success]= "Book Uploaded Successfully."
+      redirect_to books_path
     else
       flash[:error]= "Upload failed."
+      render "new"
     end
   end
 
