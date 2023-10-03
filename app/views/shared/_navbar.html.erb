@@ -36,6 +36,9 @@
             <a><%=link_to "Create a new Book", new_book_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"%></a>
             <a><%=link_to "All Book", books_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"%></a>
             <a><%=link_to "New Book Issue", new_book_issue_path, class:"text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"%></a>
+            <% if user_signed_in? %>
+            <a class="text-white rounded-md">Role:<%=current_user.role%>
+            <% end %>
           </div>
         </div>
       </div>

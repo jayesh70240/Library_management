@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     as :user do
       delete "/sign_out", to: "devise/sessions#destroy"
     end
+    
   get 'books_management/index'
   root 'main#index'
 
