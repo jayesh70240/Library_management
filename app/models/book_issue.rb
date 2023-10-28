@@ -1,23 +1,15 @@
 class BookIssue < ApplicationRecord
     belongs_to :book
-    
-    def renew
-      return false if renewal_not_allowed?
-  
-      new_due_date = Time.zone.now + 2.weeks # Adjust the renewal period as needed
-      self.due_date = new_due_date
+        
+    def return
+      return unless book
+      self.returned = true
       self.save
+          
+      # Update the book's availability status
+      book.update(checked_out: false)
+
     end
     
-    def return
-        return false if returned?
-    
-        self.returned = true
-        self.save
-        
-        # Update the book's availability status
-        book.update(checked_out: false)
-      end
-
-      validates :patron_name,presence: true
+    validates :patron_name,presence: true
 end

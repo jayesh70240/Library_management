@@ -14,8 +14,8 @@ class BooksController < ApplicationController
       flash[:success]= "Book Uploaded Successfully."
       redirect_to books_path
     else
-      flash[:error]= "Upload failed."
       render "new"
+      flash.now[:error]= "Upload failed."
     end
   end
 

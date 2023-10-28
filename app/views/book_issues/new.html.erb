@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :book_id %>
-    <%= f.collection_select(:book_id, Book.all, :id, :title) %>
+    <%= f.collection_select(:book_id, Book.where(checked_out: false), :id, :title) %>
   </div>
   <div class="actions">
     <%= f.submit 'Check Out' %>

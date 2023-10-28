@@ -2,9 +2,12 @@ Rails.application.routes.draw do
  
   resources :books
 
-  resources :book_issues
+  resources :book_issues, only: [:new, :create, :show]
   resources :book_issues do
     get 'checked_out_items', on: :collection
+    member do 
+      post "return"
+    end
   end
 
   devise_for :users

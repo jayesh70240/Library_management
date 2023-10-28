@@ -1,23 +1,8 @@
 class BookIssuesController < ApplicationController
-  
+    before_action :check_librarian_or_admin_role
+
   def new
     @book_issue = BookIssue.new
-  end
-
-   def checked_out_items
-    @checked_out_items = current_user.checked_out_items
-  end
-
-  def renew
-    @book_issue = BookIssue.find(params[:id])
-
-    if @book_issue.renew
-      flash[:success] = "Item renewed successfully."
-    else
-      flash[:error] = "Renewal failed. Item may be on hold or renewal limit reached."
-    end
-
-    redirect_to checked_out_items_book_issues_path
   end
 
   def create
@@ -33,7 +18,7 @@ class BookIssuesController < ApplicationController
       )
       @book_issue.book.update(checked_out: true)
       flash[:success] = "Item issued successfully."
-      redirect_to checked_out_items_book_issues_path
+      redirect_to books_path
     else
       render "new"
     end
@@ -55,7 +40,7 @@ class BookIssuesController < ApplicationController
       flash[:error] = "Return failed. Please contact library staff."
     end
   
-    redirect_to checked_out_items_book_issues_path
+    redirect_to books_path
   end
 
   private

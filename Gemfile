@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.3"
 
+gem 'tailwindcss-rails'
+
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"

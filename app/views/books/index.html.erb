@@ -6,6 +6,7 @@
       <th>Title</th>
       <th>Author</th>
       <th>Checked Out</th>
+      <th>Return</th>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.checked_out ? 'Yes' : 'No' %></td>
+        <td><%= button_to "Return", return_book_issue_path(book) %></td>
       </tr>
     <% end %>
   <% else %>
@@ -23,5 +25,4 @@
     </tr>
   <% end %>
 </tbody>
-
 </table>
