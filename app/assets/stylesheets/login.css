@@ -1,0 +1,53 @@
+/* jayshree css */
+h2 {
+    color: #020000;
+    font-weight: 700;
+    font-size: x-large;
+    display: table;
+}
+.login {
+    background-color: rgb(red, green, blue);
+    border: 2px solid black;
+    /* width: 400px;
+    height: 400px; */
+    /* padding-top: 24px;
+    padding-left: 53px; */
+    background-color: #fef2f2;
+    border-radius: 21px;
+
+}
+/* div {
+    margin: 16px 23px;
+} */
+.links {
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    margin: 0 46vw;
+    margin-top: 12px;
+    background-color: wheat;
+    color: black;
+}
+
+/* jayesh css */
+.base{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login{
+    width: 28vw;
+    height: 25vw;
+    padding: 36px 50px;
+    background-color: #9899d5;
+    border-radius: 30px;
+}
+.login h2{
+    margin: 0 100px;
+}
+.field label{
+    font-size: larger;
+}
+.field input .login form.action{
+    border-radius: 4px;
+}

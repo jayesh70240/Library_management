@@ -6,17 +6,22 @@ class BookIssuesController < ApplicationController
   end
 
   def create
-    @book_issue = BookIssue.new(book_issue_params)
+    book_issue = BookIssue.new(book_issue_params)
   
-    if @book_issue.save
+    if book_issue.save
       
       Transaction.create(
-        book: @book_issue.book,
-        patron_name: @book_issue.patron_name,
+        book: book_issue.book,
+        patron_name: book_issue.patron_name,
         transaction_type: "issue",
         transaction_date: Time.zone.now
       )
-      @book_issue.book.update(checked_out: true)
+      book_issue.update(
+        issued_date: Date.current,
+        due_date: Date.current+2
+        )
+      book_issue.book.update(checked_out: true)
+      
       flash[:success] = "Item issued successfully."
       redirect_to books_path
     else
@@ -25,16 +30,18 @@ class BookIssuesController < ApplicationController
   end
   
   def return
-    @book_issue = BookIssue.find(params[:id])
-  
-    if @book_issue.return
+
+    # book_issue = BookIssue.find(params[:id])
+     book = Book.find(params[:id])  #finding book params from the database
+     book_issue = book.book_issue 
+
+    if book_issue.return?
       Transaction.create(
-        book: @book_issue.book,
-        patron_name: @book_issue.patron_name,
+        book: book_issue.book,
+        patron_name: book_issue.patron_name,
         transaction_type: "return",
         transaction_date: Time.zone.now
       )
-  
       flash[:success] = "Item returned successfully."
     else
       flash[:error] = "Return failed. Please contact library staff."

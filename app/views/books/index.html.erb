@@ -7,6 +7,9 @@
       <th>Author</th>
       <th>Checked Out</th>
       <th>Return</th>
+      <th>Issued Date</th>
+      <th>Due Date</th>
+
     </tr>
   </thead>
   <tbody>
@@ -16,7 +19,15 @@
         <td><%= book.title %></td>
         <td><%= book.author %></td>
         <td><%= book.checked_out ? 'Yes' : 'No' %></td>
-        <td><%= button_to "Return", return_book_issue_path(book) %></td>
+        <td>
+          <% if book.checked_out %>
+            <%= link_to "Return", return_book_issue_path(book.id), method: :put, data: { confirm: 'Are you sure you want to return this book?' }, id: "return_#{book.id}"%>
+         <% else %>
+            N/A
+          <% end %>
+      </td>
+        <td><%= book.book_issue&.issued_date %></td>
+        <td><%= book.book_issue&.due_date %></td>
       </tr>
     <% end %>
   <% else %>

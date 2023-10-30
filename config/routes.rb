@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :book_issues do
     get 'checked_out_items', on: :collection
     member do 
-      post "return"
+      get "return"
     end
   end
 
