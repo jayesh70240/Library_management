@@ -13,5 +13,4 @@
  *= require_tree .
  *= require_self
  */
- @import "login.css";
- @import "signup.css";
+ @import "login-signup.css";

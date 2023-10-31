@@ -3,7 +3,7 @@ class BookIssue < ApplicationRecord
     validates :patron_name,presence: true
         
     def return?
-
+      byebug
       return false unless book
       self.returned = true
       self.save!
@@ -14,6 +14,7 @@ class BookIssue < ApplicationRecord
         issued_date: nil,
         due_date: nil
       )
+      byebug
       true
     end
     
