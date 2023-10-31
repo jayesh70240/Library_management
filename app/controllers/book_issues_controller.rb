@@ -17,10 +17,9 @@ class BookIssuesController < ApplicationController
       )
       book_issue.update(
         issued_date: Date.current,
-        due_date: Date.current+2
+        due_date: Date.current+7
         )
         book_issue.book.update(checked_out: true)
-        byebug
         
       flash[:success] = "Item issued successfully."
       redirect_to books_path
@@ -33,8 +32,8 @@ class BookIssuesController < ApplicationController
 
     # book_issue = BookIssue.find(params[:id])
     book = Book.find(params[:id])  #finding book params from the database
-    book_issue = book.book_issue
-    byebug
+    book_issue = book&.book_issues.last
+    
     if book_issue.return?
       Transaction.create(
         book: book_issue.book,
@@ -42,7 +41,7 @@ class BookIssuesController < ApplicationController
         transaction_type: "return",
         transaction_date: Time.zone.now
       )
-      byebug
+      
       flash[:success] = "Item returned successfully."
     else
       flash[:error] = "Return failed. Please contact library staff."
