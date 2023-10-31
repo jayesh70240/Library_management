@@ -1,53 +1,81 @@
-/* jayshree css */
-h2 {
+/*   
+  h2 {
     color: #020000;
     font-weight: 700;
     font-size: x-large;
     display: table;
-}
+  }
+
 .login {
-    background-color: rgb(red, green, blue);
-    border: 2px solid black;
-    /* width: 400px;
-    height: 400px; */
-    /* padding-top: 24px;
-    padding-left: 53px; */
-    background-color: #fef2f2;
-    border-radius: 21px;
+  border: 2px solid black;
+  background-color: lightslategray;
+  border-radius: 21px;
 
 }
-/* div {
-    margin: 16px 23px;
-} */
-.links {
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    margin: 0 46vw;
-    margin-top: 12px;
-    background-color: wheat;
-    color: black;
-}
 
-/* jayesh css */
 .base{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login{
+  width: 400px;
+  height: 400px;
+  padding: 36px 50px;
+  border-radius: 30px;
+}
+.login h2{
+  margin: 0 100px;
+}
+.field label{
+  font-size: larger;
+}
+.field input .login form.action{
+  border-radius: 4px;
+  border-radius: 15px;
+} */
+
+/* Center the login box */
+.base {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    /* This ensures the box is centered vertically on the page. */
 }
-.login{
-    width: 28vw;
-    height: 25vw;
-    padding: 36px 50px;
-    background-color: #9899d5;
+
+/* Styles for the login box */
+
+.login {
+    border: 2px solid black;
+    background-color: lightslategray;
     border-radius: 30px;
+    width: 350px;
+    padding: 36px 50px;
 }
-.login h2{
-    margin: 0 100px;
+
+/* Styles for the login box heading (h2) */
+.login h2 {
+    color: #020000;
+    font-weight: 700;
+    font-size: x-large;
+    text-align: center;
+    /* Center the heading text. */
+    margin: 0 auto;
+    /* Remove margin for better alignment. */
 }
-.field label{
+
+/* Styles for labels within .field */
+.field label {
     font-size: larger;
 }
-.field input .login form.action{
-    border-radius: 4px;
+
+/* Styles for the submit button */
+.actions input[type="submit"] {
+    /* Apply the border-radius to the submit button. */
+    border-radius: 7px;
+    background: darkgrey;
+    border: 1px black;
+    border-style: groove;
+    cursor: pointer;
 }

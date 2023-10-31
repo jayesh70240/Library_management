@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.3"
 
+gem "pry"
+
 gem 'tailwindcss-rails'
 
 gem 'devise', '~> 4.9', '>= 4.9.2'
