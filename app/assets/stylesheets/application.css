@@ -14,3 +14,6 @@
  *= require_self
  */
  @import "login-signup.css";
+ body{
+    background-color: #80a5ef;
+ }

@@ -1,39 +1,44 @@
-<h1>Book List</h1>
-
-<table>
-  <thead>
+<table class="min-w-full bg-white border border-gray-300">
+  <thead class="bg-gray-800 text-white">
     <tr>
-      <th>Title</th>
-      <th>Author</th>
-      <th>Checked Out</th>
-      <th>Return</th>
-      <th>Issued Date</th>
-      <th>Due Date</th>
-
+      <th class="py-2 px-4 text-center">Title</th>
+      <th class="py-2 px-4 text-center">Author</th>
+      <th class="py-2 px-4 text-center">Checked Out</th>
+      <th class="py-2 px-4 text-center">Issued Date</th>
+      <th class="py-2 px-4 text-center">Due Date</th>
+      <th class="py-2 px-4 text-center">Return</th>
     </tr>
   </thead>
   <tbody>
-  <% if @books.present? %>
-    <% @books.each do |book| %>
-      <tr>
-        <td><%= book.title %></td>
-        <td><%= book.author %></td>
-        <td><%= book.checked_out ? 'Yes' : 'No' %></td>
+    <% if @books.present? %>
+      <% @books.each do |book| %>
+        <tr>
+          <td class="py-2 px-4 text-center"><%= book.title %></td>
+          <td class="py-2 px-4 text-center"><%= book.author %></td>
+          <td class="py-2 px-4 text-center">
+            <% if book.checked_out %>
+              <span class="text-green-500">Yes</span>
+            <% else %>
+              <span class="text-red-500">No</span>
+              <% end %>
+          </td>
           <% if book.checked_out %>
-            <td><%= link_to "Return", return_book_issue_path(book.id), method: :put, data: { confirm: 'Are you sure you want to return this book?' }, id: "return_#{book.id}"%></td>
-            <td><%= book.book_issues&.last&.issued_date %></td>
-            <td><%= book.book_issues&.last&.due_date %></td>
+            <td class="py-2 px-4 text-center"><%= book.book_issues&.last&.issued_date %></td>
+            <td class="py-2 px-4 text-center"><%= book.book_issues&.last&.due_date %></td>
+            <td class="py-2 px-4 text-center">
+              <%= link_to "Return", return_book_issue_path(book.id), method: :put, data: { confirm: 'Are you sure you want to return this book?' }, class: "text-blue-500 hover:underline" %>
+            </td>
           <% else %>
-            <td>N/A</td>
-            <td>N/A</td>
-            <td>N/A</td>
+            <td class="py-2 px-4 text-center">N/A</td>
+            <td class="py-2 px-4 text-center">N/A</td>
+            <td class="py-2 px-4 text-center">N/A</td>
           <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="6" class="py-4 px-4 text-center text-gray-500">No books found.</td>
       </tr>
     <% end %>
-  <% else %>
-    <tr>
-      <td colspan="3">No books found.</td>
-    </tr>
-  <% end %>
-</tbody>
+  </tbody>
 </table>

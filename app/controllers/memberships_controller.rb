@@ -1,4 +1,8 @@
 class MembershipsController < ApplicationController
+    def index
+        @memberships = Membership.all
+    end
+
     def new
         @membership = Membership.new
     end
@@ -10,7 +14,7 @@ class MembershipsController < ApplicationController
     def create
         @membership = Membership.new(membership_params)
         if @membership.save
-            flash[:success]= "Your Membership has activaed successfully."
+            flash[:success]= "Your Membership has activated successfully."
             redirect_to @membership
         else
             render "new"
@@ -20,27 +24,17 @@ class MembershipsController < ApplicationController
     def renew
         @membership = Membership.find(params[:id])
     end
-
-    def expired?
-        expiration_date < Date.today
-    end
     
     def renewal_process
         @membership = Membership.find(params[:id])
-        renewal_duration = params[:renewal_duration].to_i
+        duration_months = params[:renewal_duration].to_i
 
-        renewal_fee = @membership.renewal_fee(renewal_duration)
-
-        payment_successful = true
-
-        if payment_successful?
-            new_expiration_date = @membership.expiration_date + renewal_duration.months
-            @membership.update(expiration_date: new_expiration_date)
-            flash[:success]= "Memebership renewed successfully."
-            render "renewal_confirmation"
+        if @membership.renew(duration_months)
+            flash[:success]= "Memebership renewed Successfully."
+            render :renewal_confirmation
         else
             flash[:error] = "Renewal failed. Please try again or contact us."
-            render "renew"
+            render :renew
         end
     end
 

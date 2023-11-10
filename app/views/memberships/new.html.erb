@@ -1,18 +1,31 @@
-<h1>Create a new Membership</h1>
+<div class="bg-gradient-to-r from-blue-500 to-purple-500 text-gray-800 min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6 text-center text-blue-500">Membership</h1>
 
-<%= form_with(model: @membership, local: true) do |f| %>
-    
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= form_with(model: @membership, local: true, class: 'mx-auto') do |f| %>
+      <div class="mb-4">
+        <%= f.label :name, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :name, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
 
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-    
-    <%= f.label :membership_type %>
-    <%= f.text_field :membership_type %>
-    
-    <%= f.label :expiration_date %>
-    <%= f.text_field :expiration_date %>
+      <div class="mb-4">
+        <%= f.label :email, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.email_field :email, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
 
-    <%= f.submit "Membership" %>
-<% end %>
+      <div class="mb-4">
+        <%= f.label :membership_type, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :membership_type, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :expiration_date, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.date_field :expiration_date, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="mb-6">
+        <%= f.submit "Create Membership", class: 'w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+      </div>
+    <% end %>
+  </div>
+</div>

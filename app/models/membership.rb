@@ -6,19 +6,13 @@ class Membership < ApplicationRecord
 
     def renew(duration_months)
         return false if duration_months <= 0
-
-        new_expiration_date = expiration_date + duration_months.months
+ 
+        new_expiration_date = expiration_date.to_date+ duration_months.months
         update(expiration_date: new_expiration_date)
+        true
     end
 
-    def renewal_fee(renewal_duration)
-        base_fee = 50
-        discount_rate = 0.1
-
-        renewal_fee = base_fee * renewal_duration
-
-        renewal_fee -= (renewal_fee * discount_rate) if renewal_duration > 1
-    
-        return renewal_fee
-      end
+    def expired?
+        expiration_date.to_date < Date.today
+    end
 end

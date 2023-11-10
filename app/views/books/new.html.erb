@@ -1,5 +1,5 @@
 <% if @book.errors.any? %>
-  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative">
+  <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative mb-4">
     <ul>
       <% @book.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -7,17 +7,25 @@
     </ul>
   </div>
 <% end %>
-<h1>New Book</h1>
-<%= form_for @book do |f| %>
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+
+<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-500">
+  <div class="animate-book-open max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6 text-gray-800">New Book</h1>
+
+    <%= form_for @book, html: { class: 'mb-4' } do |f| %>
+      <div class="field mb-4">
+        <%= f.label :title, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :title, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="field mb-4">
+        <%= f.label :author, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :author, class: 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit 'Upload Book', class: 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :author %>
-    <%= f.text_field :author %>
-  </div>
-  <div class="actions">
-    <%= f.submit 'Upload Book' %>
-  </div>
-<% end %>
+</div>

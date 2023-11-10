@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :role])
+    # for adding a paramater to update to solve unpermitted_parameter issue 
+    added_attrs = [:username, :role, :password, :password_confirmation, :current_password]
+    devise_parameter_sanitizer.permit(:account_update, keys: added_attrs)
   end
 
   def check_librarian_or_admin_role

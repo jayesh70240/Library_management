@@ -1,7 +1,11 @@
-<h1>Membership Details</h1>
+<div class="min-h-screen flex items-center justify-center">
+  <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+    <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Membership Details</h1>
 
-<p><strong>Name:</strong> <%= @membership.name %></p>
-<p><strong>Email:</strong> <%= @membership.email %></p>
-<p><strong>Expiration Date:</strong> <%= @membership.expiration_date %></p>
+    <p class="mb-4"><strong>Name:</strong> <%= @membership.name %></p>
+    <p class="mb-4"><strong>Email:</strong> <%= @membership.email %></p>
+    <p class="mb-4"><strong>Expiration Date:</strong> <%= @membership.expiration_date %></p>
 
-<%= link_to 'Renew Membership', renew_membership_path(@membership) %>
+    <%= link_to 'Renew Membership', renew_membership_path(@membership), class: 'block w-full text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-4' %>
+  </div>
+</div>
