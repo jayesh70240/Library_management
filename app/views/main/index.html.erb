@@ -1,2 +1,50 @@
-<!-- Update menu item -->
-<li><%= link_to "Book Management", materials_path %></li>
+  <style>
+    .welcome-text {
+      text-align: center;
+      animation: fadeIn 2s ease-out;
+      font-size: 100px
+    }
+
+    .library-text {
+      margin-top: 20px;
+      font-size: 90px;
+      opacity: 0;
+      animation: fadeIn 2s ease-out 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .smoke {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.4;
+      background: url('https://www.transparenttextures.com/patterns/fog-mist.png');
+      animation: smokeAnimation 5s infinite linear;
+    }
+
+    @keyframes smokeAnimation {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 100% 100%;
+      }
+    }
+  </style>
+  <div class="smoke"></div>
+  <div class="welcome-text">
+    <h1>Welcome To Our</h1>
+    <div class="library-text">
+      <p>Library Management</p>
+      <h1><%= current_user.username.upcase%></h1>
+    </div>
+  </div>

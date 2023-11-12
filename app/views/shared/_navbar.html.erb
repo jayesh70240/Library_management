@@ -53,7 +53,7 @@
         </button>
 
         <% if user_signed_in? %>
-            <a class="hidden sm:ml-6 sm:block text-red-500">Role:<%=current_user.role%>
+            <a class="hidden sm:ml-6 sm:block text-green-500">Role:<%=current_user.role.upcase%>
           <% end %>
 
         <!-- Profile dropdown -->
@@ -79,7 +79,7 @@
           <div id= "user-menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <!-- Active: "bg-gray-100", Not Active: "" -->
             <% if user_signed_in? %>
-                <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
+                <a><%=link_to "Your Profile",edit_user_registration_path,class:"block px-4 py-2 text-sm text-gray-700",role:"menuitem", tabindex:"-1", id:"user-menu-item-0"%></a>
                 <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
                 <%= form_tag(destroy_user_session_path, method: :delete) do %>
                     <a><%=button_to "Sign out",sign_out_path,method: :delete, remote: true, data: { confirm: 'Are you sure?' },class:"block px-4 py-2 text-sm text-gray-700",role:"menuitem",tabindex:"-1",id:"user-menu-item-2" %></a>

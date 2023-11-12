@@ -1,55 +1,145 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="edit-base">
+<h2 class="bg-gray-300 text-4xl py-4 text-center">Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="book-cover">
+  <!-- Left side content goes here -->
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-     <%= f.label :username %><br />
-    <%= f.text_field :username, autocomplete: "username" %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <div class="field mb-4">
+      <%= f.label :username, class: "block text-sm font-semibold text-gray-600" %>
+      <%= f.text_field :username, autocomplete: "username", class: "mt-1 p-2 w-full border rounded-md" %>
+    </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+    <div class="field mb-4">
+      <%= f.label :email, class: "block text-sm font-semibold text-gray-600" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "mt-1 p-2 w-full border rounded-md" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div class="confirmation-message text-gray-600">
+        Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+      </div>
     <% end %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field mb-4">
+      <%= f.label :password, class: "block text-sm font-semibold text-gray-600" %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: "mt-1 p-2 w-full border rounded-md" %>
+      <% if @minimum_password_length %>
+        <div class="password-requirements text-sm text-gray-600">
+          <em><%= @minimum_password_length %> characters minimum</em>
+        </div>
+      <% end %>
+    </div>
+  </div> <!-- Closing .book-cover -->
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
+  <div class="book-content">
+    <div class="field mb-4">
+      <%= f.label :password_confirmation, class: "block text-sm font-semibold text-gray-600" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "mt-1 p-2 w-full border rounded-md" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :role %><br />
-    <%= f.radio_button :role, 'user', checked: true %> User
-    <%= f.radio_button :role, 'admin' %> Admin
-    <%= f.radio_button :role, 'librarian' %> Librarian
-  </div>
+    <div class="field mb-4">
+      <%= f.label :current_password, class: "block text-sm font-semibold text-gray-600" %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", class: "mt-1 p-2 w-full border rounded-md" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+    <div class="field mb-4">
+      <%= f.label :role, class: "block text-sm font-semibold text-gray-600" %><br />
+      <%= f.radio_button :role, 'user', checked: true, class: "mr-2" %> User
+      <%= f.radio_button :role, 'admin', class: "mr-2" %> Admin
+      <%= f.radio_button :role, 'librarian', class: "mr-2" %> Librarian
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Update", class: "bg-green-500 text-white py-2 px-4 rounded" %>
+    </div>
+  </div> <!-- Closing .book-content -->
+
 <% end %>
+</div>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .edit-base {
+    display: flex;
+    max-width: 73vw;
+    margin: 80px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border-radius: 10px;
+    height: 33vw;
+  }
 
-<h3>Cancel my account</h3>
+.edit-base h2 {
+  text-align: center;
+  font-size: xxx-large;
+  background-color: #8869f594;
+  display: flex;
+  justify-content: center;
+  padding: 100px 0;
 
-<div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+}
+  
+  .book-cover,
+  .book-content {
+    padding: 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    background-color: cornsilk;
+  }
+  
+  .book-cover {
+    width: 50%;
+    border-right: 1px solid #ddd;
+  }
+  
+  h2 {
+    color: #333;
+  }
+  
+  .field {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    color: #555;
+  }
+  
+  .password-requirements {
+    font-size: 12px;
+    color: #777;
+  }
+  
+  .confirmation-message {
+    margin-top: 10px;
+    color: #777;
+  }
+  
+  .book-content {
+    width: 50%;
+  }
+  
+  .actions {
+    margin-top: 20px;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
 
-<%= link_to "Back", :back %>
+</style>  
