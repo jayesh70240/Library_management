@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_librarian_or_admin_role
     unless current_user.librarian? || current_user.admin?
-      flash[:alert] = "You are not authorized to access this page. Your role is: #{current_user.role}"
+      flash[:alert] = "You are not authorized to access this page."
       redirect_to root_path
     end
   end

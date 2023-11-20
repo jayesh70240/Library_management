@@ -15,4 +15,5 @@ class Membership < ApplicationRecord
     def expired?
         expiration_date.to_date < Date.today
     end
+    
 end

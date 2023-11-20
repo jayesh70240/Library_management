@@ -1,7 +1,7 @@
 <div class="bg-gradient-to-r from-blue-500 to-purple-500 text-gray-800 min-h-screen flex items-center justify-center">
   <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
     <h1 class="text-3xl font-bold mb-6 text-center text-blue-500">Membership</h1>
-
+    <% if current_user && current_user.role == "librarian" || current_user.role == "admin" %>
     <%= form_with(model: @membership, local: true, class: 'mx-auto') do |f| %>
       <div class="mb-4">
         <%= f.label :name, class: 'block text-gray-700 text-sm font-bold mb-2' %>
@@ -22,10 +22,40 @@
         <%= f.label :expiration_date, class: 'block text-gray-700 text-sm font-bold mb-2' %>
         <%= f.date_field :expiration_date, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
       </div>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
 
       <div class="mb-6">
         <%= f.submit "Create Membership", class: 'w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
       </div>
+    <% end %>
+  
+    <% elsif current_user && current_user.role == "user" %>
+    <%= form_with(model: @membership, local: true, class: 'mx-auto') do |f| %>
+      <div class="mb-4">
+        <%= f.label :username, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :current_user.username, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :email, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.email_field :current_user.email, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :membership_type, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.text_field :membership_type, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
+
+      <div class="mb-4">
+        <%= f.label :expiration_date, class: 'block text-gray-700 text-sm font-bold mb-2' %>
+        <%= f.date_field :expiration_date, class: 'w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline' %>
+      </div>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+
+      <div class="mb-6">
+        <%= f.submit "Create Membership", class: 'w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+      </div>
+    <% end %>
     <% end %>
   </div>
 </div>

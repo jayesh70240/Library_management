@@ -9,6 +9,8 @@ gem 'tailwindcss-rails'
 
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'activeadmin'
+gem 'rails-erd'
+
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.7"

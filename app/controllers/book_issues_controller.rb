@@ -1,5 +1,5 @@
 class BookIssuesController < ApplicationController
-    before_action :check_librarian_or_admin_role
+  before_action :check_librarian_or_admin_role
 
   def new
     @book_issue = BookIssue.new
